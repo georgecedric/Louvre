@@ -1,0 +1,234 @@
+/*-----------style corps de page----------------*/
+
+@font-face { /* Définition d'une nouvelle police nommée LearningCurveProRegular */
+    font-family: 'LearningCurveProRegular';
+    src: url('../LearningCurve_OT-webfont.eot');
+    src: url('../LearningCurve_OT-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../LearningCurve_OT-webfont.woff') format('woff'),
+         url('../LearningCurve_OT-webfont.ttf') format('truetype'),
+         url('../LearningCurve_OT-webfont.svg#LearningCurveProRegular') format('svg');
+}
+
+html{
+  height:100%;
+}
+
+
+body
+{
+   background-image:url('/image/louvreAccueil-.jpeg');
+   background-size: 100%;
+   background-color: #331107;
+   background-repeat: no-repeat;
+  
+    position: center;
+
+}
+
+.footer{
+  background-color: #1e1e1e;
+  height: 100px;
+  position: absolute;
+  
+  margin-right:300px;
+
+}
+
+.presentation{
+    
+    background-color: #1e1e1e;
+    margin-left: 200px;
+    margin-right:200px;
+    margin-top: -20px;
+    padding-left: 15px;
+    padding-right: 30px;
+    padding-top: 30px;
+}
+
+
+h1 
+{
+    color: white;
+    font-family: 'LearningCurveProRegular', Georgia, serif;
+    
+}
+
+
+/*-----------style ENTETE----------------*/
+
+.header img {
+    width: 60%;
+    padding-left: 5px;
+    margin-bottom: 5px;
+}
+
+.header h1{
+    text-align: left;
+    
+}
+
+.pyramide{
+    background-color: #c82d00;
+    margin-left: 0px;
+    padding-top: 5px;
+    
+    
+}
+
+/*-----------style PIED DE PAGE----------------*/
+
+.footer{
+    
+    background-color: #1e1e1e;
+    
+    margin-right:200px;
+    
+}
+
+.paiement{
+    background-color: white;
+     margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 5px;
+    
+}
+
+.paiement img {
+    width: 150%;
+}
+.mention{
+   padding:5px;
+    padding-top: 10px;
+  margin-left: 5px;
+}
+
+.mention p{
+    color:white;
+    font-size: 10px;
+}
+
+
+
+
+/*-----------PAGE INDEX----------------*/
+.carousel{
+    margin-top: 20px;
+}
+
+
+.title{
+    background-color: #4e4e4e;
+    margin-top: 20px;
+    margin-left: -15px;
+    margin-right:-30px;
+    border-bottom:1px solid white;
+    border-top:1px solid white;
+     
+}
+
+.title h1{
+    padding-left: 15px;
+    color:white;
+    font-weight: 400;
+    font-size: 17px;
+    padding-bottom: 5px;
+}
+
+
+#titre{
+    color:#c82d00;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+#evenement{
+    color:white;
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+    font-weight: 800;
+}
+
+#texte{
+    color:white;
+    font-style: italic;
+    
+    font-weight: 800;
+}
+
+.carousel-caption{
+    text-align: left;
+    margin-left: -70px;
+}
+.billetdescription{
+    margin-right: -30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    border-bottom:1px solid white;
+    
+    
+}
+.billetdescription h1{
+    color:#c82d00;
+    font-family: 'LearningCurveProRegular', Georgia, serif;
+}
+
+.billetdescription h2{
+    font-size: 25px;
+    color:white;
+    font-family: 'LearningCurveProRegular', Georgia, serif;
+}
+
+.billetdescription P{
+    margin-top: 20px;
+    color:white;
+    font-family: 'LearningCurveProRegular', Georgia, serif;
+    text-align: justify;
+    font-style: oblique;
+}
+
+.billetchoice{
+    margin-top: 20px;
+    background-color: #4e4e4e;
+    border-radius: 10px;
+    box-shadow: 2px 2px 12px #aaa;
+    
+    
+}
+.billetchoice h2 {
+    text-align: center;
+    color : rgb(218, 3, 3);
+    font-weight: 800;
+}
+
+.billetchoice p {
+    text-align: center;
+    color:black;
+    font-weight: 800;
+}
+.billetchoice .btn{
+    background-color: #9b2200fd;
+    border:1px solid #c82d00;
+}
+
+
+/*-----------style Formulaire----------------*/
+
+.formulaire{
+    margin-top: 20px;
+    background-color: gray;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    padding-top: 10px;
+    
+}
+
+.recap{
+    margin-top: 20px;
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
