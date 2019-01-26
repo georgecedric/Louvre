@@ -45,6 +45,23 @@ body
     padding-top: 30px;
 }
 
+.testation{
+    
+    background-color: white;
+    margin-right:-30px;
+    margin-bottom: -20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: justify;
+
+}
+
+.form{
+    
+    margin-right:-15px;
+    margin-left: -15px;
+
+}
 
 h1 
 {
@@ -148,8 +165,14 @@ h1
     font-weight: 800;
 }
 
+.testation h1{
+    
+  color: black;
+  font-size: 30px;
+   
+}
 #texte{
-    color:white;
+    color:rgb(187, 173, 173);
     font-style: italic;
     
     font-weight: 800;
@@ -164,7 +187,7 @@ h1
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 50px;
-    border-bottom:1px solid white;
+   
     
     
 }
@@ -232,3 +255,61 @@ h1
     padding-bottom: 10px;
     
 }
+
+
+#datepicker {
+
+    color:black;
+    
+}
+.ui-datepicker {
+    background-color: black;
+    
+     }
+     ui-datepicker .ui-datepicker-title {
+        margin: 0 2.3em;
+        line-height: 1.8em;
+        text-align: center;
+        background-color: black;
+    }
+
+    .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+        border: 1px solid #fbd850;
+        background: #c82d00 url(images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x;
+        font-weight: bold;
+        color: black;
+    }
+        .ui-datepicker .ui-datepicker-title {
+            margin: 0 2.3em;
+            line-height: 1.8em;
+            text-align: center;
+            color: white;
+            background-color: #c82d00;
+        }
+
+        .ui-widget-header {
+            border: 1px solid #e78f08;
+            background: #c82d00 url(images/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x;
+            color: #ffffff;
+            font-weight: bold;
+        }
+       
+       
+
+        .ui-datepicker table {
+            font-size: .9em;
+            border-collapse: collapse;
+            background: black ;
+        }
+
+        .ui-widget.ui-widget-content {
+            border: 1px solid #c5c5c5;
+            background: black ;
+        }
+        .ui-datepicker th {
+            padding: .7em .3em;
+            text-align: center;
+            font-weight: bold;
+            border: 0;
+            color: red;
+        }
