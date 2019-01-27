@@ -86,7 +86,8 @@
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
- /* French initialisation for the jQuery UI date picker plugin. */
+
+  /* French initialisation for the jQuery UI date picker plugin. */
 /* Written by Keith Wood (kbwood{at}iinet.com.au),
 			  StÃ©phane Nahmani (sholby@sholby.net),
 			  StÃ©phane Raimbault <stephane.raimbault@gmail.com> */
@@ -100,10 +101,12 @@
 		// Browser globals
 		factory( jQuery.datepicker );
 	}
-}(function( datepicker ) {
+}
+
+(function( datepicker ) {
 	datepicker.regional['fr'] = {
 		closeText: 'Fermer',
-		prevText: 'PrÃ©cÃ©dent',
+		prevText: 'Précédent',
 		nextText: 'Suivant',
 		currentText: 'Aujourd\'hui',
 		monthNames: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
@@ -124,11 +127,81 @@
 	return datepicker.regional['fr'];
 
 }))
+ /*    
+    *    Get Weekends in a month
+    *     @param {Date} dateBegin
+    *     @return {Array} selectedDates
+    */
+    var getWeekends = function(dateBegin){
+        var selectedDates     = {};
+        if (dateBegin instanceof Date)
+        {
+            var dateEnd         = new Date(dateBegin.getFullYear(), dateBegin.getMonth() + 1, 0);
+            var day             = null;
+ 
+            while (dateBegin <= dateEnd)
+            {
+                day     = dateBegin.getDay();
+                if (day == 2 )
+                {
+                    selectedDates[dateBegin]        = {};
+                    selectedDates[dateBegin][0]     = false;
+                    selectedDates[dateBegin][1]     = "";
+                    selectedDates[dateBegin][2]     = "Weekend";
+                }
+                dateBegin.setDate(dateBegin.getDate() + 1);
+            }
+        }
+        return selectedDates;
+    };
+ 
+ var selectedDates = {};
+ 
+    $( "#datepicker" ).datepicker({minDate: -1,
+        onChangeMonthYear: function(year, month)
+        {
+            selectedDates = getWeekends(new Date(year, month - 1, 1));
+        },
+        beforeShow: function(input, inst){
+            var dateNow = new Date();
+            selectedDates = getWeekends(new Date(dateNow.getFullYear(), dateNow.getMonth(), 1));
+        },
+        beforeShowDay: function(date)
+           {
+              date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+              var highlight     = selectedDates[date];
+              if (highlight) {
+                return [highlight[0], highlight[1], highlight[2]];
+              }
+              else {
+                 return [true, '', ''];
+              }
+           }
+    });
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
   $( function() {
   $( "#datepicker" ).datepicker({ minDate: 0,
+  
   dateFormat: "DD d MM yy" });
+  
+
+// si time > 14h, la date minimum choisie doit être la date du jour +1
+$( "#datepicker" ).datepicker({ minDate: 1,
+  
+  dateFormat: "DD d MM yy" });
+
     
   } );
+
+  
+  
   </script>
 
     

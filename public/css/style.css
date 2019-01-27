@@ -237,79 +237,63 @@ h1
 
 /*-----------style Formulaire----------------*/
 
-.formulaire{
-    margin-top: 20px;
-    background-color: gray;
-    margin-bottom: 20px;
-    border-radius: 20px;
-    padding-top: 10px;
-    
-}
 
-.recap{
-    margin-top: 20px;
-    background-color: white;
-    margin-bottom: 20px;
-    border-radius: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    
-}
 
+/*-----------style datapicker----------------*/
 
 #datepicker {
 
-    color:black;
-    
+    color:black;   
 }
+
 .ui-datepicker {
+    background-color: black;   
+}
+
+.ui-datepicker .ui-datepicker-title {
+    margin: 0 2.3em;
+    line-height: 1.8em;
+    text-align: center;
     background-color: black;
-    
-     }
-     ui-datepicker .ui-datepicker-title {
-        margin: 0 2.3em;
-        line-height: 1.8em;
-        text-align: center;
-        background-color: black;
     }
 
-    .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
-        border: 1px solid #fbd850;
-        background: #c82d00 url(images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x;
-        font-weight: bold;
-        color: black;
-    }
-        .ui-datepicker .ui-datepicker-title {
-            margin: 0 2.3em;
-            line-height: 1.8em;
-            text-align: center;
-            color: white;
-            background-color: #c82d00;
-        }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+    border: 1px solid #fbd850;
+    background: #c82d00 url(images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x;
+    font-weight: bold;
+    color: black;
+}
 
-        .ui-widget-header {
-            border: 1px solid #e78f08;
-            background: #c82d00 url(images/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x;
-            color: #ffffff;
-            font-weight: bold;
-        }
-       
-       
+.ui-datepicker .ui-datepicker-title {
+    margin: 0 2.3em;
+    line-height: 1.8em;
+    text-align: center;
+    color: white;
+    background-color: #c82d00;
+}
 
-        .ui-datepicker table {
-            font-size: .9em;
-            border-collapse: collapse;
-            background: black ;
-        }
+.ui-widget-header {
+    border: 1px solid #e78f08;
+    background: #c82d00 url(images/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x;
+    color: #ffffff;
+    font-weight: bold;
+}
+             
+.ui-datepicker table {
+    font-size: .9em;
+    border-collapse: collapse;
+    background: black ;
+}
 
-        .ui-widget.ui-widget-content {
-            border: 1px solid #c5c5c5;
-            background: black ;
-        }
-        .ui-datepicker th {
-            padding: .7em .3em;
-            text-align: center;
-            font-weight: bold;
-            border: 0;
-            color: red;
-        }
+.ui-widget.ui-widget-content {
+    border: 1px solid #c5c5c5;
+    background: black ;
+}
+
+.ui-datepicker th {
+    padding: .7em .3em;
+    text-align: center;
+    font-weight: bold;
+    border: 0;
+    color: red;
+}
