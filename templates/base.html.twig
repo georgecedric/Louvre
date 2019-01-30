@@ -88,9 +88,7 @@
   <script>
 
   /* French initialisation for the jQuery UI date picker plugin. */
-/* Written by Keith Wood (kbwood{at}iinet.com.au),
-			  StÃ©phane Nahmani (sholby@sholby.net),
-			  StÃ©phane Raimbault <stephane.raimbault@gmail.com> */
+
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
 
@@ -128,11 +126,11 @@
 
 }))
  /*    
-    *    Get Weekends in a month
+    *    Get tuesday in a month
     *     @param {Date} dateBegin
     *     @return {Array} selectedDates
     */
-    var getWeekends = function(dateBegin){
+    var getTuesday = function(dateBegin){
         var selectedDates     = {};
         if (dateBegin instanceof Date)
         {
@@ -147,7 +145,7 @@
                     selectedDates[dateBegin]        = {};
                     selectedDates[dateBegin][0]     = false;
                     selectedDates[dateBegin][1]     = "";
-                    selectedDates[dateBegin][2]     = "Weekend";
+                    
                 }
                 dateBegin.setDate(dateBegin.getDate() + 1);
             }
@@ -160,11 +158,11 @@
     $( "#datepicker" ).datepicker({minDate: -1,
         onChangeMonthYear: function(year, month)
         {
-            selectedDates = getWeekends(new Date(year, month - 1, 1));
+            selectedDates = getTuesday(new Date(year, month - 1, 1));
         },
         beforeShow: function(input, inst){
             var dateNow = new Date();
-            selectedDates = getWeekends(new Date(dateNow.getFullYear(), dateNow.getMonth(), 1));
+            selectedDates = getTuesday(new Date(dateNow.getFullYear(), dateNow.getMonth(), 1));
         },
         beforeShowDay: function(date)
            {
@@ -179,12 +177,7 @@
            }
     });
  
- 
- 
- 
- 
- 
- 
+
 
   $( function() {
   $( "#datepicker" ).datepicker({ minDate: 0,
