@@ -32,11 +32,6 @@ class Commande
     private $price;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $dateofpurchase;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $email;
@@ -44,17 +39,17 @@ class Commande
     /**
      * @ORM\Column(type="datetime")
      */
-    private $dateofvisit;
+    private $dateVisit;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $tickettype;
+    private $ticketType;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $nomberofticket;
+    private $NumberTicket;
 
     /**
      * @ORM\Column(type="datetime")
@@ -102,17 +97,6 @@ class Commande
         return $this;
     }
 
-    public function getDateofpurchase(): ?\DateTimeInterface
-    {
-        return $this->dateofpurchase;
-    }
-
-    public function setDateofpurchase(\DateTimeInterface $dateofpurchase): self
-    {
-        $this->dateofpurchase = $dateofpurchase;
-
-        return $this;
-    }
 
     public function getEmail(): ?string
     {
@@ -126,36 +110,36 @@ class Commande
         return $this;
     }
 
-    public function getDateofvisit(): ?\DateTimeInterface
+    public function getdateVisit(): ?\DateTimeInterface
     {
         return $this->dateofvisit;
     }
 
-    public function setDateofvisit(\DateTimeInterface $dateofvisit): self
+    public function setdateVisit(\DateTimeInterface $dateofvisit): self
     {
         $this->dateofvisit = $dateofvisit;
 
         return $this;
     }
 
-    public function getTickettype(): ?string
+    public function getTicketType(): ?string
     {
         return $this->tickettype;
     }
 
-    public function setTickettype(string $tickettype): self
+    public function setTicketType(string $tickettype): self
     {
         $this->tickettype = $tickettype;
 
         return $this;
     }
 
-    public function getNomberofticket(): ?int
+    public function getNumberTicket(): ?int
     {
         return $this->nomberofticket;
     }
 
-    public function setNomberofticket(int $nomberofticket): self
+    public function setNumberTicket(int $nomberofticket): self
     {
         $this->nomberofticket = $nomberofticket;
 
