@@ -236,7 +236,17 @@ h1
 
 
 /*-----------style Formulaire----------------*/
-
+.formulaire{
+    background-color: #4e4e4e;
+    padding : 40px;
+    margin-right: -30px;
+}
+.ticketform{
+    background-color: red;
+    padding-right: 40px;
+    padding-left: 40px;
+    border-radius:10px ;
+}
 
 
 /*-----------style datapicker----------------*/

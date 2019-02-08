@@ -42,7 +42,7 @@ class Commande
     private $dateVisit;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="array", length=255)
      */
     private $ticketType;
 
@@ -55,6 +55,13 @@ class Commande
      * @ORM\Column(type="datetime")
      */
     private $createAt;
+
+     /**
+     * * @ORM\OneToMany(targetEntity="App\Entity\Ticket", cascade={"persist"})
+     */
+    private $styleticket;
+
+    
 
     public function getId(): ?int
     {
@@ -154,6 +161,18 @@ class Commande
     public function setCreateAt(\DateTimeInterface $createAt): self
     {
         $this->createAt = $createAt;
+
+        return $this;
+    }
+
+    public function getStyleTicket(): ?array
+    {
+        return $this->styleticket;
+    }
+
+    public function setStyleTicket(\DateTimeInterface $styleticket): self
+    {
+        $this->styleticket = $styleticket;
 
         return $this;
     }

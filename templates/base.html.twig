@@ -125,6 +125,8 @@
 	return datepicker.regional['fr'];
 
 }))
+
+
  /*    
     *    Get tuesday in a month
     *     @param {Date} dateBegin
@@ -134,13 +136,13 @@
         var selectedDates     = {};
         if (dateBegin instanceof Date)
         {
-            var dateEnd         = new Date(dateBegin.getFullYear(), dateBegin.getMonth() + 1, 0);
+            var dateEnd         = new Date(dateBegin.getFullYear(), dateBegin.getMonth() + 1, 1);
             var day             = null;
  
             while (dateBegin <= dateEnd)
             {
                 day     = dateBegin.getDay();
-                if (day == 2 )
+                if (day == 0 )
                 {
                     selectedDates[dateBegin]        = {};
                     selectedDates[dateBegin][0]     = false;
@@ -155,7 +157,7 @@
  
  var selectedDates = {};
  
-    $( "#datepicker" ).datepicker({minDate: -1,
+    $( "#datepicker" ).datepicker({minDate: 0,
         onChangeMonthYear: function(year, month)
         {
             selectedDates = getTuesday(new Date(year, month - 1, 1));
@@ -185,13 +187,12 @@
   dateFormat: "DD d MM yy" });
   
 
-// si time > 14h, la date minimum choisie doit être la date du jour +1
-$( "#datepicker" ).datepicker({ minDate: 1,
-  
-  dateFormat: "DD d MM yy" });
+
 
     
   } );
+
+  
 
   
   
