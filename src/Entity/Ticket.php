@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TicketRepository")
@@ -41,6 +44,49 @@ class Ticket
      */
     private $birth;
 
+        /**
+     * @ORM\Column(type="integer")
+     */
+    private $age;
+
+
+  /**
+   * @ORM\Column(name="reduction", type="boolean")
+   */
+  private $reduction ;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Commande", inversedBy="tickets")
+    * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull()
+     */
+    private $commande;
+
+/**
+     * Constructor
+     *
+     * @param Commande $commande
+     */
+    public function __construct(Commande $commande = null)
+    {
+        $this->commande= $commande;
+
+    }
+
+    public function setCommande(?Commande $commande): self
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
 
     public function getId(): ?int
     {
@@ -72,7 +118,9 @@ class Ticket
     }
 
     public function getPrice(): ?int
+
     {
+        
         return $this->price;
     }
 
@@ -95,16 +143,52 @@ class Ticket
         return $this;
     }
 
-    public function getbirth(): ?\DateTimeInterface
+    public function getBirth(): ?\DateTimeInterface
     {
+        
         return $this->birth;
     }
 
     public function setBirth(\DateTimeInterface $birth): self
     {
         $this->birth = $birth;
-
+        
+        
         return $this;
     }
+ 
+    public function getAge(): ?int
+
+    {
+        
+        return $this->age;
+    }
+
+    public function setAge(int $age): self
+    {
+        $this->age = $age;
+
+        return $this;
+    }  
+   
     
+  /**
+   * @param bool $reduction
+   */
+  public function setReduction($reduction)
+  {
+    $this->reduction = $reduction;
+  }
+
+  /**
+   * @return bool
+   */
+  public function getReduction()
+  {
+    return $this->reduction;
+  }
+
+    
+
+
 }

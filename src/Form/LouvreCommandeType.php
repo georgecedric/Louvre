@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 
+
 class LouvreCommandeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -39,15 +40,17 @@ class LouvreCommandeType extends AbstractType
                      'label' => "Email"    
                      ])
            
-            
-                    
-            ->add('styleticket',     LouvreTicketType::class, [
-                
-                    'label' => "TICKET"    
-                     ])
+                     ->add('tickets', CollectionType::class, array(
+                        'entry_type'   => LouvreTicketType::class,
+                        'allow_add'    => true,
+                        'allow_delete' => true,
+                        'by_reference' => false,
+                        'label' => "Entrez les informations visiteurs ici" 
+                      ))      
+
 
             ->add('save',      SubmitType::class,[
-                'label' => "passer au paiement"
+                'label' => "sauvegarder"
             ])
         ;
     }

@@ -17,19 +17,13 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
 
+
 class LouvreTicketType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('price', ChoiceType::class, [
-                'label' => "choissisez votrz billet",
-                'choices'  => [
-                    'plein tarif' => 16,
-                    'tarif enfant' => 12,
-                    'tarif reduit' => 8,
-                ],
-            ])
+ 
         
               ->add('name',  TextType::class, [
                   'attr' => [
@@ -46,15 +40,11 @@ class LouvreTicketType extends AbstractType
                 'label' => "Votre Nationalité"
             ])
               ->add('birth',   BirthdayType::class,[
-                'label' => "Votre date de naissance"
+                'label' => "Votre date de naissance",
+                'format' => 'dd-MM-yyyy',
+                'years' => range(date('Y')-100, date('Y')-1),
             ])
-
-           
-              
-              ->add('save',      SubmitType::class,[
-                  'label' => "enregistrer"
-              ]
-              );
+            ->add('reduction', CheckboxType::class, array('required' => false));
     }
 
     public function configureOptions(OptionsResolver $resolver)

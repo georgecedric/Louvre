@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}   Home{{"nom"}}{% endblock %} 
+    
+   {% block content %}
+
+{# src/Louvre/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+    <!-- Caroussel================================================== -->
+<div class ="form container-fluid">
+    <div class="row  testation "> 
+
+        <h1> Billet d'entrée pour visiteur individuel </h1></br>
+        <p>Billet et réservation horaire incluant les collections permanentes, les expositions temporaires  et le musée Eugène-Delacroix.</p>
+        <p>Entrée à tarif reduit, sur présentation d’un justificatif pour les moins de 18 ans, les 18-25 ans résidents de l’Espace Economique Européen, les personnes handicapées et leur accompagnateur, et les bénéficiaires des minima sociaux. Liste complète sur Louvre.fr.
+        Billet valable seulement le jour sélectionné.</p>
+    </div> 
+
+    
+   
+
+    <div class="row panierfinal ">      
+            <h2>votre panier</h2> 
+            <p>Date de votre visite : {{ commande.dateVisit | date('j F Y') }}</p> 
+            <p>Type de billet : {{ commande.ticketType }}</p>
+            
+
+
+            <h2>description de vos billets</h2>
+        
+                <ul>
+                    {% set id = 1 %}    
+                    {% for ticket in tickets %}
+                    <div class="row col-sm-offset-2 billetVisitor ">
+                        <li>
+                            <p>visiteur numero : {{ id }}</p>
+                            <p>{{ ticket.name }}  {{ ticket.surname }}</p>
+                            <p>né le  {{ ticket.birth | date('j F Y')  }}</p>
+                            <p>prix du billet : {{ ticket.price }} €</p>
+                            <p><a class=" btn btn-info btn-md" href="{{path('firststage')}}" >modifier le billet  </a></p>
+                        </li>
+                        {% set id = id + 1 %}
+                    </div>
+                    {% endfor %}
+                </ul>
+              
+
+            <h2>Montant total de votre panier</h2>
+
+            <div class="row col-sm-offset-2 billetVisitor ">
+                <p>Nombre de billet : {{ commande.numberTicket }}</p>
+                <p>Montant de votre panier : {{ commande.price }}</p>
+            </div>    
+    </div>
+    <p><a class=" btn btn-info btn-md" href=# >passer au paiement  <span class="glyphicon glyphicon glyphicon-shopping-cart"></span></a></p>
+</div>
+
+
+{% endblock %}

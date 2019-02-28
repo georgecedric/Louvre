@@ -3,12 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommandeRepository")
  */
 class Commande
 {
+
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -42,27 +48,37 @@ class Commande
     private $dateVisit;
 
     /**
-     * @ORM\Column(type="array", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $ticketType;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $NumberTicket;
+    private $numberTicket;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $createAt;
 
+
      /**
-     * * @ORM\OneToMany(targetEntity="App\Entity\Ticket", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="commande", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=false)
+     
      */
-    private $styleticket;
+    private $tickets;
+
+    public function __construct()
+  {
+    $this->createAt   = new \Datetime();
+    
+     $this->tickets   = new ArrayCollection();
+    
+  }
 
     
-
     public function getId(): ?int
     {
         return $this->id;
@@ -119,36 +135,36 @@ class Commande
 
     public function getdateVisit(): ?\DateTimeInterface
     {
-        return $this->dateofvisit;
+        return $this->dateVisit;
     }
 
-    public function setdateVisit(\DateTimeInterface $dateofvisit): self
+    public function setdateVisit(\DateTimeInterface $dateVisit): self
     {
-        $this->dateofvisit = $dateofvisit;
+        $this->dateVisit = $dateVisit;
 
         return $this;
     }
 
     public function getTicketType(): ?string
     {
-        return $this->tickettype;
+        return $this->ticketType;
     }
 
-    public function setTicketType(string $tickettype): self
+    public function setTicketType(string $ticketType): self
     {
-        $this->tickettype = $tickettype;
+        $this->ticketType = $ticketType;
 
         return $this;
     }
 
     public function getNumberTicket(): ?int
     {
-        return $this->nomberofticket;
+        return $this->numberTicket;
     }
 
-    public function setNumberTicket(int $nomberofticket): self
+    public function setNumberTicket(int $numberTicket): self
     {
-        $this->nomberofticket = $nomberofticket;
+        $this->numberTicket = $numberTicket;
 
         return $this;
     }
@@ -165,15 +181,40 @@ class Commande
         return $this;
     }
 
-    public function getStyleTicket(): ?array
+     /**
+     * Add ticket
+     *
+     * @param Ticket $ticket
+     *
+     * @return Commande
+     */
+    public function addTicket(Ticket $ticket)
     {
-        return $this->styleticket;
-    }
-
-    public function setStyleTicket(\DateTimeInterface $styleticket): self
-    {
-        $this->styleticket = $styleticket;
+        $this->tickets[] = $ticket;
+        $ticket->setCommande($this);
 
         return $this;
     }
+
+    /**
+     * Remove ticket
+     *
+     * @param Ticket $ticket
+     */
+    public function removeTicket(Ticket $ticket)
+    {
+        $this->tickets->removeElement($ticket);
+    }
+
+    /**
+     * Get tickets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
+ 
 }

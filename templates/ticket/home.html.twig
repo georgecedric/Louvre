@@ -56,35 +56,49 @@
      </div>
 
 </div>   
-  
-<div class="row title">
-<h1>Billeterie page d'acceuil</h1>
 
+   <!-- formulaire================================================== -->
+
+<div class="row title"> 
+    <h1>Billeterie page d'acceuil</h1>
 </div>
+
 <div class="row billetdescription text-center">
 
-        <h1>Musée du Louvre</h1>
-        <h2>Collections permanentes, expositions temporaires et musée Eugène Delacroix</h2>
-        <p>
-          Ouvert de 9h à 18h, et jusqu’à 21h45 les mercredis et vendredis. Fermé les mardis et les 1 er janvier, 1 er mai et 25 décembre. Entrée libre sans billet, sur présentation d’un justificatif pour les moins de 18 ans, les 18-25 ans résidents de l’Espace Economique Européen, les personnes handicapées et leur accompagnateur et les bénéficiaires des minimas sociaux.
-        </p>
+    <h1>Musée du Louvre</h1>
+    <h2>Collections permanentes, expositions temporaires et musée Eugène Delacroix</h2>
+    <p>
+        Ouvert de 9h à 18h, et jusqu’à 21h45 les mercredis et vendredis. Fermé les mardis et les 1 er janvier, 1 er mai et 25 décembre. Entrée libre sans billet, sur présentation d’un justificatif pour les moins de 18 ans, les 18-25 ans résidents de l’Espace Economique Européen, les personnes handicapées et leur accompagnateur et les bénéficiaires des minimas sociaux.
+    </p>
 
 
-    <div class=" row text-center ">
+        <div class=" row formulaire">
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+            {{ form_row(form.dateVisit) }}
+            {{ form_row(form.ticketType) }}
 
-        
-        
-        <div class= "col-sm-offset-3 col-sm-6 billetchoice text-center">
-            <h2>achat de billets</h2>
-            <img src="{{ asset('/image/joconde.jpeg') }}"  alt="mastercard" />
-            <p><a class=" btn btn-info btn-md" href="{{path('firststage')}}">Je commande  <span class="glyphicon glyphicon glyphicon-hand-right"></span></a></p>
-    
+            <div class="col-sm-offset-4 ticketform"> 
+
+                {# Génération automatique des champs pas encore écrits.
+                    Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+                    et tous les champs cachés (type « hidden »). #}
+                {{ form_rest(form) }}
+
+                {# Fermeture de la balise <form> du formulaire HTML #}
+                {{ form_end(form) }}
+            </div>
+            <div class=" row text-center ">
+
+                <div class= "col-sm-offset-3 col-sm-6 billetchoice text-center">
+                    <h2>achat de billets</h2>
+                    <img src="{{ asset('/image/joconde.jpeg') }}"  alt="mastercard" />
+                    <p><a class=" btn btn-info btn-md" href="{{path('firststage')}}">Je commande  <span class="glyphicon glyphicon glyphicon-hand-right"></span></a></p>
+            
+                </div>
+
+            </div>
         </div>
 
-        
-
-    </div>
 </div>
-
 
 {% endblock %}

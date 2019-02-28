@@ -49,7 +49,7 @@ body
     
     background-color: white;
     margin-right:-30px;
-    margin-bottom: -20px;
+    margin-bottom: 20px;
     padding-left: 15px;
     padding-right: 15px;
     text-align: justify;
@@ -242,13 +242,39 @@ h1
     margin-right: -30px;
 }
 .ticketform{
-    background-color: red;
-    padding-right: 40px;
-    padding-left: 40px;
+    background-color: #9b2200fd;
+    padding-right: 60px;
+    padding-left: 60px;
     border-radius:10px ;
+    margin-bottom: 20px;
+}
+
+/*-----------style panier----------------*/
+
+.panier{
+    background-color: white;
+}
+.panierfinal{
+    background-color: rgb(184, 179, 179);
+    color: black;
+    margin: 10px;
+    padding: 20px;
 }
 
 
+
+.panierfinal h2{
+    background-color: #c82d00;
+    padding: 5px;
+}
+
+.billetVisitor{
+    background-color: white;
+    color: black;
+    margin: 10px;
+    padding: 20px;
+    
+}
 /*-----------style datapicker----------------*/
 
 #datepicker {
