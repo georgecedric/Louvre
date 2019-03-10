@@ -253,7 +253,39 @@ h1
 
 .panier{
     background-color: white;
+    border-width:2px;
+    border-color:black;
 }
+.panier h3{
+    background-color: #c82d00;
+    padding: 5px;
+    margin:-10px;
+    margin-bottom: 10px;
+    
+}
+
+.priceticket{
+    background-color:  rgb(184, 179, 179);
+    margin: none;
+    text-align: center;
+    padding-bottom: 10px;
+    border-width:2px;
+    border-color:black;
+}
+.priceticket h1{
+    color:black;
+}
+
+redtext{
+    color:red;
+    font-style: italic;
+}
+.panier h5{
+    color:#c82d00;
+    font-style: italic;
+    
+}
+
 .panierfinal{
     background-color: rgb(184, 179, 179);
     color: black;
@@ -333,3 +365,36 @@ h1
     border: 0;
     color: red;
 }
+
+
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+ .StripeElement {
+    box-sizing: border-box;
+  
+    height: 40px;
+  
+    padding: 10px 12px;
+  
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+  
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+  }
+  
+  .StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+  
+  .StripeElement--invalid {
+    border-color: #fa755a;
+  }
+  
+  .StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+  }

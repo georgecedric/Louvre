@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}   Home{{"nom"}}{% endblock %} 
+    
+   {% block content %}
+
+{# src/Louvre/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+    <!-- Caroussel================================================== -->
+<div class ="form container-fluid">
+    <div class="row  testation "> 
+
+        <h1> Billet d'entrée pour visiteur individuel </h1></br>
+        <p>Billet et réservation horaire incluant les collections permanentes, les expositions temporaires  et le musée Eugène-Delacroix.</p>
+        <p>Entrée à tarif reduit, sur présentation d’un justificatif pour les moins de 18 ans, les 18-25 ans résidents de l’Espace Economique Européen, les personnes handicapées et leur accompagnateur, et les bénéficiaires des minima sociaux. Liste complète sur Louvre.fr.
+        Billet valable seulement le jour sélectionné.</p>
+    </div> 
+
+  
+   
+
+    <div class="row panierfinal ">   
+
+
+                 <h2>Montant total de votre panier</h2>
+
+            <div class="row col-sm-offset-2 billetVisitor ">
+                <p>Nombre de billet : {{ commande.numberTicket }}</p>
+                <p>Montant de votre panier : {{ commande.price }} euros</p>
+                 
+            </div>      
+ 
+<form  action="{{ path('order_checkout') }}" method="post" id="payment-form">
+
+  <div class="form-row">
+    <label for="card-element">
+      Credit or debit card
+    </label>
+    <div id="card-element">
+      <!-- A Stripe Element will be inserted here. -->
+    </div>
+
+    <!-- Used to display form errors. -->
+    <div id="card-errors" role="alert"></div>
+  </div>
+
+  <button>Valider Paiement</button>
+</form>
+
+{% endblock %}

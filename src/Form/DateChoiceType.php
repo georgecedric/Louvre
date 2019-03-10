@@ -37,7 +37,7 @@ class DateChoiceType extends AbstractType
             'label' => "choissisez votre billet",
                 'choices'  => [
                 'Journée' => 'journée',
-                'Demi-journée' => 'demi-jour',
+                'Demi-journée' => 'demi-journee',
                 
                         ],
                     ])

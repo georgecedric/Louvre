@@ -8,6 +8,7 @@ use App\Entity\Commande;
 use App\Entity\Category;
 use App\Form\LouvreTicketType;
 use App\Form\LouvreCommandeType;
+use App\Form\LouvreValidationType;
 use App\Form\DateChoiceType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use  Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 
 class TicketController extends AbstractController
 {
@@ -66,21 +68,17 @@ class TicketController extends AbstractController
      */
     public function firststage (Request $request, SessionInterface $session)
     {
-        $newCommande = $session->get('newCommande');
+        $commande = new Commande();
+        $newCommande = $session->get('newCommande', $commande );
         $ticketType =$newCommande->getTicketType();
         $dateVisit =$newCommande->getDateVisit();
      
-        $commande = new Commande();
+        
         $commande->setTicketType($ticketType);
         $commande->setDateVisit($dateVisit);
-        
-        
-
-        
-
-    
+ 
   
-    $formCommande = $this->get('form.factory')->create(LouvreCommandeType::class, $commande);
+    $formCommande = $this->createForm(LouvreCommandeType::class, $newCommande);
     // Si la requête est en POST
         
     if ($request->isMethod('POST')) {
@@ -93,7 +91,7 @@ class TicketController extends AbstractController
             if ($formCommande->isValid()) {
                 // On enregistre notre objet $commande dans la base de données, par exemple
         
-                $session->set('newCommande', $commande);
+                $session->set('newCommande', $newCommande);
                 
                 
         $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
@@ -123,7 +121,7 @@ class TicketController extends AbstractController
 
             foreach($tickets as $ticket){
                 $reduc= $ticket ->getReduction();
-                $ticket->setPrice(12);
+                
                 // calcul de l'age
                 $datetime2 = $ticket ->getBirth();
                 $age = $datetime1->diff($datetime2, true)->y;   
@@ -146,7 +144,7 @@ class TicketController extends AbstractController
                     }
                 }
                 // calcul du prix si choix de demi-journée
-                if ($ticketType == 'demi-jour'){
+                if ($ticketType == 'demi-journee'){
                     $price = $price/2;
                 }
 
@@ -157,11 +155,76 @@ class TicketController extends AbstractController
     }
         $commande->setNumberTicket($cmpt);
         $commande -> setPrice($pricecommande);
-        
+
+         $formCommande = $this->get('form.factory')->create(LouvreValidationType::class, $commande);
+
+        if ($request->isMethod('POST') && $formCommande->handleRequest($request)->isValid()) {
+            $session->set('newCommande', $commande);
+         
+
+          return $this->redirectToRoute('payment');
+        }
+
+
         return $this->render('ticket/secondstage.html.twig', array(
-            
+            'form' => $formCommande->createView(),
             'commande' => $commande,
             'tickets'=> $tickets,
         ));
     }
+
+
+    /**
+     * @Route("/ticket/payment", name="payment")
+     */
+    public function payment(Request $request, SessionInterface $session)
+    {
+        $commande = $session->get('newCommande');       
+        return $this->render('ticket/payment.html.twig', array(
+            
+            'commande' => $commande,
+            
+        ));
+    }
+
+    
+
+/**
+     * @Route(
+     *     "/checkout",
+     *     name="order_checkout",
+     *     methods="POST"
+     * )
+     */
+    public function checkoutAction(Request $request, SessionInterface $session)
+    {
+        $commande = $session->get('newCommande');
+        $price = $commande->getPrice();
+        $email = $commande->getEmail();
+
+        \Stripe\Stripe::setApiKey("sk_test_FbpFiCrOl0hmGJFlBNmJ8jzQ");
+
+        // Get the credit card details submitted by the form
+        $token = $_POST['stripeToken'];
+
+        // Create a charge: this will charge the user's card
+        try {
+            $charge = \Stripe\Charge::create(array(
+                "amount" => $price*100, // Amount in cents
+                "currency" => "eur",
+                "source" => $token,
+                "description" => "Paiement  -" . $email
+            ));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($commande);
+            return $this->redirectToRoute('payment');
+            $em->flush();
+        } catch(\Stripe\Error\Card $e) {
+
+            $this->addFlash("error","Snif ça marche pas :(");
+            return $this->redirectToRoute('payment');
+            // The card has been declined
+        }
+    }
+
 }

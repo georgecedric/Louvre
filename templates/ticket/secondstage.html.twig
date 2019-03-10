@@ -21,40 +21,65 @@
    
 
     <div class="row panierfinal ">      
-            <h2>votre panier</h2> 
-            <p>Date de votre visite : {{ commande.dateVisit | date('j F Y') }}</p> 
-            <p>Type de billet : {{ commande.ticketType }}</p>
-            
+            <h2>Récapitulatif de votre panier</h2> 
+            <div class="row col-sm-offset-2 billetVisitor ">
+                <p>Date de votre visite : {{ commande.dateVisit | date('j F Y') }}</p> 
+                <p>Type de billet : {{ commande.ticketType }}</p>
+            </div>
 
 
             <h2>description de vos billets</h2>
         
-                <ul>
+               
                     {% set id = 1 %}    
                     {% for ticket in tickets %}
                     <div class="row col-sm-offset-2 billetVisitor ">
+                     <ul>
                         <li>
-                            <p>visiteur numero : {{ id }}</p>
-                            <p>{{ ticket.name }}  {{ ticket.surname }}</p>
+                        <div class="col-sm-8  ">
+                            <p>visiteur n° {{ id }}: {{ ticket.name }}  {{ ticket.surname }}</p>
+                            <p>Date de votre visite : {{ commande.dateVisit | date('j F Y') }}</p>
+                            
+                                {% if commande.ticketType == "demi-journee" %}
+                                    <p>Type de billet : {{ commande.ticketType }} (Éntrée valable à partir de 14h00)</p>
+                                {% else %}
+                                       <p>Type de billet : {{ commande.ticketType }} (Éntrée valable uniquement à partir de 9h00)</p>
+                                {% endif %} 
+                            
                             <p>né le  {{ ticket.birth | date('j F Y')  }}</p>
-                            <p>prix du billet : {{ ticket.price }} €</p>
+                            <p>Nationalité : {{ ticket.nationality }} </p>
+                            </div>
+                           
+                        <div class="col-sm-4 priceticket ">
+                            <h1>prix du billet : </h1>
+                            <h1> {{ ticket.price }} €</h1>
+                        </div></br>
+                        <div class="row col-sm-12"> 
+                            {% if ticket.reduction == true %}
+                                    <p> <redtext>Billet à tarif réduit, une pièce d'identité vous sera demandé à l'entrée du musée pour justifier votre reduction.</redtext></p>
+                             {% endif %} 
                             <p><a class=" btn btn-info btn-md" href="{{path('firststage')}}" >modifier le billet  </a></p>
+                        </div>
+          
                         </li>
+                    
                         {% set id = id + 1 %}
+                        </ul>
                     </div>
+                    
                     {% endfor %}
-                </ul>
+                
               
 
             <h2>Montant total de votre panier</h2>
 
             <div class="row col-sm-offset-2 billetVisitor ">
                 <p>Nombre de billet : {{ commande.numberTicket }}</p>
-                <p>Montant de votre panier : {{ commande.price }}</p>
+                <p>Montant de votre panier : {{ commande.price }} euros</p>
+                  {{ form(form) }}
             </div>    
     </div>
-    <p><a class=" btn btn-info btn-md" href=# >passer au paiement  <span class="glyphicon glyphicon glyphicon-shopping-cart"></span></a></p>
+ 
 </div>
-
 
 {% endblock %}
