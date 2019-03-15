@@ -1,3 +1,10 @@
 swiftmailer:
     url: '%env(MAILER_URL)%'
+    
+    auth_mode: login
+    port: 465
+    host: smtp.gmail.com
+    username: contact@artdchoix.com
+    password: Corbusier
     spool: { type: 'memory' }
+    

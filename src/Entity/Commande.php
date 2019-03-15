@@ -62,6 +62,10 @@ class Commande
      */
     private $createAt;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $numberCommande;
 
      /**
      * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="commande", cascade={"persist"}, orphanRemoval=true)
@@ -157,6 +161,19 @@ class Commande
         return $this;
     }
 
+
+    public function getNumberCommande(): ?string
+    {
+        return $this->numberCommande;
+    }
+
+    public function setNumberCommande(string $numberCommande): self
+    {
+        $this->numberCommande = $numberCommande;
+
+        return $this;
+    }
+
     public function getNumberTicket(): ?int
     {
         return $this->numberTicket;
@@ -216,5 +233,4 @@ class Commande
         return $this->tickets;
     }
 
- 
 }

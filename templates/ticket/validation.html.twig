@@ -26,27 +26,9 @@
                  <h2>Montant total de votre panier</h2>
 
             <div class="row col-sm-offset-2 billetVisitor ">
-                <p>Nombre de billet : {{ commande.numberTicket }}</p>
-                <p>Montant de votre panier : {{ commande.price }} euros</p>
-                 
+                Bravo Votre achat est validé.
             </div>      
- 
-            <form  action="{{ path('order_checkout') }}" method="post" id="payment-form">
 
-              <div class="form-row">
-                <label for="card-element">
-                  Credit or debit card
-                </label>
-              <div id="card-element">
-                  <!-- A Stripe Element will be inserted here. -->
-              </div>
+            <h2>recapitulatif de votre commande</h2>
 
-                <!-- Used to display form errors. -->
-              <div id="card-errors" role="alert"></div>
-              </div>
-
-              <button>Valider Paiement</button>
-            </form>
-      </div> 
-</div> 
 {% endblock %}

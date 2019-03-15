@@ -39,7 +39,19 @@ class TicketController extends AbstractController
     {
         
         $commande = new Commande();
-        
+        function random($car) {
+            $string = "";
+            $chaine = "abcdefghijklmnpqrstuvwxy0123456789";
+            srand((double)microtime()*1000000);
+            for($i=0; $i<$car; $i++) {
+            $string .= $chaine [rand()%strlen($chaine  )];
+            }
+            return $string;
+            }
+            // APPEL
+            // Génère une chaine de longueur 20
+            $chaine = random(12);
+            $commande -> setNumberCommande( $chaine );
     
         $formCommande = $this->get('form.factory')->create(DateChoiceType::class, $commande);
         
@@ -53,6 +65,7 @@ class TicketController extends AbstractController
         
         if ($formCommande->isValid()) {
             $session->set('newCommande', $commande);
+            
             return $this->redirectToRoute('firststage');
         }
     } 
@@ -72,6 +85,7 @@ class TicketController extends AbstractController
         $newCommande = $session->get('newCommande', $commande );
         $ticketType =$newCommande->getTicketType();
         $dateVisit =$newCommande->getDateVisit();
+        
      
         
         $commande->setTicketType($ticketType);
@@ -196,9 +210,10 @@ class TicketController extends AbstractController
      *     methods="POST"
      * )
      */
-    public function checkoutAction(Request $request, SessionInterface $session)
+    public function checkoutAction(Request $request, SessionInterface $session, \Swift_Mailer $mailer)
     {
         $commande = $session->get('newCommande');
+
         $price = $commande->getPrice();
         $email = $commande->getEmail();
 
@@ -217,14 +232,43 @@ class TicketController extends AbstractController
             ));
             $em = $this->getDoctrine()->getManager();
             $em->persist($commande);
-            return $this->redirectToRoute('payment');
             $em->flush();
+
+            //envoyer email ici
+
+            $message = (new \Swift_Message('Hello Email'))
+            ->setFrom(array ('contact@lartdchoix.com'=>'billeterie le louvre'))
+            ->setTo($email)
+            ->setBody(
+                $this->renderView(
+                    // templates/emails/registration.html.twig
+                    'emails/registration.html.twig', array('commande' => $session->get('newCommande'),  'tickets' => $commande->getTickets())
+                ),
+                'text/html'
+            );
+    
+        $mailer->send($message);
+
+
+
+            return $this->redirectToRoute('validation');
+            
         } catch(\Stripe\Error\Card $e) {
 
             $this->addFlash("error","Snif ça marche pas :(");
             return $this->redirectToRoute('payment');
             // The card has been declined
         }
+    }
+
+    /**
+     * @Route("/ticket/validation", name="validation")
+     */
+    public function validation()
+    {
+        return $this->render('ticket/validation.html.twig', [
+            'controller_name' => 'TicketController',
+        ]);
     }
 
 }
