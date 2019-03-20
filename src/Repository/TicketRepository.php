@@ -18,7 +18,20 @@ class TicketRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Ticket::class);
     }
+    public function getNb($commandeId) {
+ 
+        return $this->createQueryBuilder('l')
+        ->andWhere('l.commandeId = :commandeId')
 
+        ->setParameter('commandeId', $commandeId)
+ 
+                        ->select('COUNT(l)')
+ 
+                        ->getQuery()
+ 
+                        ->getSingleScalarResult();
+ 
+    }
     // /**
     //  * @return Ticket[] Returns an array of Ticket objects
     //  */

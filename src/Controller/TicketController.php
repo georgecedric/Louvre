@@ -31,6 +31,17 @@ class TicketController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/noticket", name="noticket")
+     */
+    public function noticket()
+    {
+        return $this->render('ticket/noticket.html.twig', [
+            'controller_name' => 'TicketController',
+        ]);
+    }
+
+
 
     /**
      * @Route("/", name="home")
@@ -59,13 +70,46 @@ class TicketController extends AbstractController
     if ($request->isMethod('POST')) {
     // On fait le lien Requête <-> Formulaire
     // À partir de maintenant, la variable $advert contient les valeurs entrées dans le formulaire par le visiteur
+   
     $formCommande->handleRequest($request);
 
         // On vérifie que les valeurs entrées sont correctes
         
         if ($formCommande->isValid()) {
-            $session->set('newCommande', $commande);
             
+            $session->set('newCommande', $commande);
+            $dateVisit =$commande->getDateVisit();
+
+        // recherche du nombre de ticket deja vendu pour une date precise
+
+            $repository = $this->getDoctrine()
+                ->getManager()
+                ->getRepository(Commande::class);
+                $listeCommandes = $repository->findBy(array('dateVisit' => $dateVisit));
+                $nbTotalTicket=0;
+
+                foreach($listeCommandes as $listeCommande)
+                    {
+                        $commandeId=$listeCommande->getId();
+                        $em = $this->getDoctrine()->getManager();
+                        $nbTicket = $em->getRepository(Ticket::class);
+                        $nb = $nbTicket->getNb($commandeId);
+                        $nbTotalTicket = $nb + $nbTotalTicket;
+                    }
+
+                $ticketRestant = 1000 - $nbTotalTicket;
+                
+                
+                    if ($ticketRestant == 0){
+                        return $this->redirectToRoute('noticket');
+                    }
+
+                    elseif ($ticketRestant >= 8){
+                        $ticketRestant = 8;
+                        
+                    }
+                    
+            $session->set('newTicketRestant', $ticketRestant);    
             return $this->redirectToRoute('firststage');
         }
     } 
@@ -81,15 +125,18 @@ class TicketController extends AbstractController
      */
     public function firststage (Request $request, SessionInterface $session)
     {
+       
+        $ticketRestant = $session->get('newTicketRestant');
+        
         $commande = new Commande();
         $newCommande = $session->get('newCommande', $commande );
         $ticketType =$newCommande->getTicketType();
         $dateVisit =$newCommande->getDateVisit();
-        
-     
-        
         $commande->setTicketType($ticketType);
         $commande->setDateVisit($dateVisit);
+
+
+ 
  
   
     $formCommande = $this->createForm(LouvreCommandeType::class, $newCommande);
@@ -116,6 +163,7 @@ class TicketController extends AbstractController
       'form' => $formCommande->createView(),
       'ticketType'=> $ticketType,
       'dateVisit' => $dateVisit,
+      'ticketRestant'=> $ticketRestant,
     ));
     }
 
@@ -237,7 +285,7 @@ class TicketController extends AbstractController
             //envoyer email ici
 
             $message = (new \Swift_Message('Hello Email'))
-            ->setFrom(array ('contact@lartdchoix.com'=>'billeterie le louvre'))
+            ->setFrom(array ('contact@lartdchoix.com'=>'billetterie le louvre'))
             ->setTo($email)
             ->setBody(
                 $this->renderView(

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+
 use App\Entity\Commande;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -19,6 +20,18 @@ class CommandeRepository extends ServiceEntityRepository
         parent::__construct($registry, Commande::class);
     }
 
+
+    public function getNb($commandeId) {
+ 
+        return $this->createQueryBuilder('l')
+ 
+                        ->select('COUNT(l)')
+ 
+                        ->getQuery()
+ 
+                        ->getSingleScalarResult();
+ 
+    }
     // /**
     //  * @return Commande[] Returns an array of Commande objects
     //  */

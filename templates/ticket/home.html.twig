@@ -76,9 +76,10 @@
             {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
             {{ form_row(form.dateVisit) }}
             {{ form_row(form.ticketType) }}
-
-            <div class="col-sm-offset-4 ticketform"> 
-
+            
+        <div class=" row text-center">
+            <div class=" col-sm-offset-4   billetchoice"> 
+                <img src="{{ asset('/image/joconde.jpeg') }}"   /></br>
                 {# Génération automatique des champs pas encore écrits.
                     Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
                     et tous les champs cachés (type « hidden »). #}
@@ -87,16 +88,7 @@
                 {# Fermeture de la balise <form> du formulaire HTML #}
                 {{ form_end(form) }}
             </div>
-            <div class=" row text-center ">
-
-                <div class= "col-sm-offset-3 col-sm-6 billetchoice text-center">
-                    <h2>achat de billets</h2>
-                    <img src="{{ asset('/image/joconde.jpeg') }}"  alt="mastercard" />
-                    <p><a class=" btn btn-info btn-md" href="{{path('firststage')}}">Je commande  <span class="glyphicon glyphicon glyphicon-hand-right"></span></a></p>
-            
-                </div>
-
-            </div>
+    </div>
         </div>
 
 </div>

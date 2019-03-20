@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}   Home{{"nom"}}{% endblock %} 
+{% block title %}   {{"Louvre"}}{% endblock %} 
     
 {% block content %}
 
@@ -22,17 +22,23 @@
     <div class ="row container-fluid  ">
 
         <div class ="col-sm-8">
+            <div class ="textBillet">
+                <h2> Vous pouvez commandez   
+                {% if ticketRestant == 1 %} 
+                {{ ticketRestant }} ticket seulement
+                {% else  %}
+                jusqu'à {{ ticketRestant }} tickets
+                {% endif %} 
+                
+                
+                 </h2>
+            </div>    
             <div class=" row formulaire">
                 {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-                {# Les erreurs générales du formulaire. #}
                 {{ form_errors(form) }}
 
-                {# Génération du label + error + widget pour un champ. #}
                 {{ form_row(form.name) }}
-
-                {# Génération manuelle et éclatée : #}
-                
                 {{ form_row(form.surname) }}
                 {{ form_row(form.email) }}
 
@@ -55,18 +61,14 @@
     </div>
           
 
-     <div class=" col-sm-offset-4">
-        {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+     <div class=" col-sm-8 text-center firstage">
         <a class=" btn btn btn-primary" href="{{path('home')}}">Retour à l'accueil <span class="glyphicon glyphicon glyphicon-hand-right"></span></a>
         {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary '}}) }}
     </div>
 
-        {# Génération automatique des champs pas encore écrits.
-            Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
-            et tous les champs cachés (type « hidden »). #}
+
         {{ form_rest(form) }}
 
-        {# Fermeture de la balise <form> du formulaire HTML #}
         {{ form_end(form) }}
 </div>
 

@@ -18,7 +18,7 @@ body
 {
    background-image:url('/image/louvreAccueil-.jpeg');
    background-size: 100%;
-   background-color: #331107;
+   background-color: white;
    background-repeat: no-repeat;
   
     position: center;
@@ -211,27 +211,26 @@ h1
 }
 
 .billetchoice{
-    margin-top: 20px;
-    background-color: #4e4e4e;
-    border-radius: 10px;
-    box-shadow: 2px 2px 12px #aaa;
     
-    
-}
-.billetchoice h2 {
-    text-align: center;
-    color : rgb(218, 3, 3);
-    font-weight: 800;
+    margin: 20px;
+   
+    padding-top: 20px;   
 }
 
-.billetchoice p {
-    text-align: center;
-    color:black;
-    font-weight: 800;
+.firstage{
+    margin: 20px;
+}
+
+
+
+.textBillet{
+    color:white;
 }
 .billetchoice .btn{
+    margin-top: 20px;
     background-color: #9b2200fd;
     border:1px solid #c82d00;
+    margin-bottom: 20px;
 }
 
 

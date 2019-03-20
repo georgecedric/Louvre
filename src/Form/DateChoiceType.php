@@ -41,8 +41,8 @@ class DateChoiceType extends AbstractType
                 
                         ],
                     ])
-                    ->add('save',      SubmitType::class,[
-                        'label' => "enregistrer"
+        ->add('save',      SubmitType::class,[
+                        'label' => "Je commande"
                     ]
                     );
     }

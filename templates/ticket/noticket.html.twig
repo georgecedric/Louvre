@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}   Home{{"nom"}}{% endblock %} 
+    
+   {% block content %}
+
+{# src/Louvre/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+    <!-- Caroussel================================================== -->
+<div class ="form container-fluid">
+    <div class="row  testation "> 
+
+        <h1> Billet d'entrée pour visiteur individuel </h1></br>
+        <p>Billet et réservation horaire incluant les collections permanentes, les expositions temporaires  et le musée Eugène-Delacroix.</p>
+        <p>Entrée à tarif reduit, sur présentation d’un justificatif pour les moins de 18 ans, les 18-25 ans résidents de l’Espace Economique Européen, les personnes handicapées et leur accompagnateur, et les bénéficiaires des minima sociaux. Liste complète sur Louvre.fr.
+        Billet valable seulement le jour sélectionné.</p>
+    </div> 
+
+  
+   
+
+    <div class="row panierfinal ">   
+
+
+                 <h2>Le musée est victime de son succé</h2>
+
+            <div class="row col-sm-offset-2 billetVisitor ">
+                <h3> Désolé, il n'y a plus de billet en vente pour la date que vous avez demandez, veuillez choisir une autre date.</h3>
+            </div>  
+            <div class=" col-sm-offset-4">
+                <a class=" btn btn btn-primary" href="{{path('home')}}">Retour à l'accueil <span class="glyphicon glyphicon glyphicon-hand-right"></span></a>
+             </div>    
+    </div>
+            
+
+{% endblock %}

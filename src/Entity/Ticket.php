@@ -19,6 +19,11 @@ class Ticket
      */
     private $id;
 
+       /**
+     * @ORM\Column(type="integer")
+     */
+
+    private $commandeId;
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -91,6 +96,11 @@ class Ticket
     public function getId(): ?int
     {
         return $this->id;
+
+    }
+    public function getCommaneId(): ?int
+    {
+        return $this->commandeId;
     }
 
     public function getName(): ?string

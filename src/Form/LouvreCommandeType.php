@@ -50,7 +50,7 @@ class LouvreCommandeType extends AbstractType
 
 
             ->add('save',      SubmitType::class,[
-                'label' => "sauvegarder"
+                'label' => "verifier votre panier"
             ])
         ;
     }
