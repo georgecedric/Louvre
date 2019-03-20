@@ -50,6 +50,8 @@ class TicketController extends AbstractController
     {
         
         $commande = new Commande();
+        
+        
         function random($car) {
             $string = "";
             $chaine = "abcdefghijklmnpqrstuvwxy0123456789";
@@ -98,7 +100,7 @@ class TicketController extends AbstractController
                     }
 
                 $ticketRestant = 1000 - $nbTotalTicket;
-                
+                $ticketRestant = 3;
                 
                     if ($ticketRestant == 0){
                         return $this->redirectToRoute('noticket');
@@ -153,9 +155,8 @@ class TicketController extends AbstractController
                 // On enregistre notre objet $commande dans la base de données, par exemple
         
                 $session->set('newCommande', $newCommande);
-                
-                
-        $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+                $session->set('newTicketRestant', $ticketRestant);
+
                 return $this->redirectToRoute('secondstage');
             }
       }
@@ -173,7 +174,7 @@ class TicketController extends AbstractController
     public function secondstage (Request $request, SessionInterface $session)
     {
         $commande = $session->get('newCommande');
-        
+        $ticketRestant = $session->get('newTicketRestant');
         $tickets = $commande->getTickets();
         $datetime1 = $commande->getDateVisit();
         $ticketType = $commande->getTicketType();
@@ -232,6 +233,7 @@ class TicketController extends AbstractController
             'form' => $formCommande->createView(),
             'commande' => $commande,
             'tickets'=> $tickets,
+            
         ));
     }
 

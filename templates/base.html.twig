@@ -83,10 +83,12 @@
   <script src="https://js.stripe.com/v3/"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
       <!-- Javascript de Bootstrap -->
-    <script src="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')}}"></script> 
+  <script src="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')}}"></script> 
   
   <script>
+  
       // Scrollspy fluide
       $(function () {
         $('header a').on('click', function(e) {
@@ -212,18 +214,17 @@ $(document).ready(function() {
 
  $(document).ready(function() {
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    var ticketRestant = $(".iddata").data("videoid");
     var $container = $('div#louvre_commande_tickets');
-    var ticketRestant = {{ ticketRestant }};
-    
-    
 
     // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
     var index = $container.find(':input').length;
-
+    
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
 
     
     $('#add_ticket').click(function(e) {
+      
       addTicket($container);
 
       e.preventDefault(); // évite qu'un # apparaisse dans l'URL
@@ -245,6 +246,7 @@ $(document).ready(function() {
 
     // La fonction qui ajoute un formulaire CategoryType
     function addTicket($container) {
+      
       // Dans le contenu de l'attribut « data-prototype », on remplace :
       // - le texte "__name__label__" qu'il contient par le label du champ
       // - le texte "__name__" qu'il contient par le numéro du champ
@@ -264,6 +266,7 @@ $(document).ready(function() {
 
       // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
       index++;
+       
       if (index == ticketRestant){
                $('#add_ticket').off();}
       
