@@ -25,6 +25,7 @@ class DateChoiceType extends AbstractType
         
         $builder
         ->add('dateVisit',  DateType::class, [
+            'label' => "choissisez votre date de visite",
             'widget' => 'single_text',
             'format' => 'dd-MM-yyyy',
             'html5' => false,

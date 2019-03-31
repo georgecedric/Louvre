@@ -3,16 +3,20 @@
 
 {% block title %}   Home{{"nom"}}{% endblock %} 
     
-   {% block content %}
+   {% block content %} {{ commande.numberTicket }}
 
-{# src/Louvre/PlatformBundle/Resources/views/Advert/index.html.twig #}
+    le musée du louvre vous remercie pour votre achat,
+    veuillez trouver ci dessous votre facture a imprimer et à presenter à l'entrée du musée : 
+
+        
 
    <div class="row panierfinal ">   
 
 
-                 <h2>Montant total de votre panier</h2>
+                 
 
             <div class="row col-sm-offset-2 billetVisitor ">
+                 <p>   facture numero : {{ commande.numberCommande }}</p>
                 <p>Nombre de billet : {{ commande.numberTicket }}</p>
                 <p>Montant de votre panier : {{ commande.price }} euros</p>
                  

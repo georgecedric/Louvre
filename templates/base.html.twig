@@ -38,7 +38,7 @@
                 
                 </div>
                 <div class ="col-sm-8 ">
-                   <h1>Billetterie officielle </h1> 
+                   <h1>Billetterie officielle  "Hello World"</h1> 
                    
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 <div class="col-sm-1"><img src="{{ asset('/image/3DSECRURE.png') }}"  alt="3DSECURE" /></div>
             </div>
             <div class="row mention"> 
-                <p>Tarifs . contactez nous . CGV . Aide/FAQ</p>
+                <p>Tarifs . contactez nous .  <a class="CGV" href="https://www.ticketlouvre.fr/louvre/b2c/index.cfm/CGV">CGV</a>. Aide/FAQ</p>
                 <div class="row text-center"> 
                     <p>© Musée du Louvre - Tous droits de reproduction réservés</p>
                 </div>
@@ -269,23 +269,23 @@ $(document).ready(function() {
        
       if (index == ticketRestant){
                $('#add_ticket').off();}
-      
-      
-      
-
+     
     }
+    
 
     // La fonction qui ajoute un lien de suppression d'une catégorie
     function addDeleteLink($prototype) {
       // Création du lien
       var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
-
+      
       // Ajout du lien
       $prototype.append($deleteLink);
 
       // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
       $deleteLink.click(function(e) {
+        var ticketRestant = ticketRestant + 1 ;
         $prototype.remove();
+        
 
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;

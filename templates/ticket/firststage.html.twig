@@ -6,7 +6,7 @@
 
 
 
-<!-- Caroussel================================================== -->
+<!-- Presentation================================================== -->
     
 <div class ="form container-fluid">
     <div class="row  testation "> 
@@ -17,17 +17,15 @@
         Billet valable seulement le jour sélectionné.</p>
     </div> 
 
-    
-  
     <div class ="row container-fluid  ">
         <div class ="textBillet">
-            <h2> Vous pouvez commandez  
+            <h3> il ne reste que 
                 {% if ticketRestant == 1 %} 
-                    {{ ticketRestant }} ticket seulement
+                    {{ ticketRestant }} ticket seulement en vente pour la date demandée<div class="iddata" data-videoid= {{ ticketRestant }}> </div>  
                 {% else  %}
-                    jusqu'à {{ ticketRestant }} tickets <div class="iddata" data-videoid= {{ ticketRestant }}> </div> 
+                    {{ ticketRestant }} tickets en vente pour la date demandée<div class="iddata" data-videoid= {{ ticketRestant }}> </div>  
                 {% endif %}    
-            </h2>
+            </h3>
         </div>  
         <div class ="col-sm-8">
               

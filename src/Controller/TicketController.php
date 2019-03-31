@@ -130,9 +130,15 @@ class TicketController extends AbstractController
        
         $ticketRestant = $session->get('newTicketRestant');
         
+       
+        $newCommande = $session->get('newCommande' );
+
+        if ($newCommande==null){
+            return $this->redirectToRoute('home');
+        }
         $commande = new Commande();
-        $newCommande = $session->get('newCommande', $commande );
         $ticketType =$newCommande->getTicketType();
+        
         $dateVisit =$newCommande->getDateVisit();
         $commande->setTicketType($ticketType);
         $commande->setDateVisit($dateVisit);
@@ -245,7 +251,6 @@ class TicketController extends AbstractController
     {
         $commande = $session->get('newCommande');       
         return $this->render('ticket/payment.html.twig', array(
-            
             'commande' => $commande,
             
         ));
@@ -286,7 +291,7 @@ class TicketController extends AbstractController
 
             //envoyer email ici
 
-            $message = (new \Swift_Message('Hello Email'))
+            $message = (new \Swift_Message('votre facture'))
             ->setFrom(array ('contact@lartdchoix.com'=>'billetterie le louvre'))
             ->setTo($email)
             ->setBody(
