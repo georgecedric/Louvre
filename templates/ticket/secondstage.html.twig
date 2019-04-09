@@ -17,20 +17,16 @@
         Billet valable seulement le jour sélectionné.</p>
     </div> 
 
-    
-   
-
     <div class="row panierfinal ">      
             <h2>Récapitulatif de votre panier</h2> 
             <div class="row col-sm-offset-2 billetVisitor ">
-                <p>Date de votre visite : {{ commande.dateVisit | date('j F Y') }}</p> 
+                <p>Date de votre visite : {{ commande.dateVisit | date('j.m.Y') }}</p> 
                 <p>Type de billet : {{ commande.ticketType }}</p>
             </div>
 
 
             <h2>description de vos billets</h2>
-        
-               
+
                     {% set id = 1 %}    
                     {% for ticket in tickets %}
                     <div class="row col-sm-offset-2 billetVisitor ">
@@ -38,7 +34,7 @@
                         <li>
                         <div class="col-sm-8  ">
                             <p>visiteur n° {{ id }}: {{ ticket.name }}  {{ ticket.surname }}</p>
-                            <p>Date de votre visite : {{ commande.dateVisit | date('j F Y') }}</p>
+                            <p>Date de votre visite : {{ commande.dateVisit | date('j.m.Y') }}</p>
                             
                                 {% if commande.ticketType == "demi-journee" %}
                                     <p>Type de billet : {{ commande.ticketType }} (Éntrée valable à partir de 14h00)</p>
@@ -46,7 +42,7 @@
                                        <p>Type de billet : {{ commande.ticketType }} (Éntrée valable uniquement à partir de 9h00)</p>
                                 {% endif %} 
                             
-                            <p>né le  {{ ticket.birth | date('j F Y')  }}</p>
+                            <p>né le  {{ ticket.birth | date('j.m.Y')  }}</p>
                             <p>Nationalité : {{ ticket.nationality }} </p>
                             </div>
                            

@@ -25,13 +25,13 @@ class TicketControllerTest extends WebTestCase
             $this->assertSame(1, $crawler->filter('html:contains("Billetterie")')->count());
         }
         
-        public function testList()
+        public function testLink()
         {
             $client = static::createClient();
-             $client->request('GET', '/ticket');
-             $client->clickLink('CGV');
-           
-
+             $client-> followRedirects();
+             $crawler = $client->request('GET', '/ticket');
+             $crawler->selectLink('CGV')->link();
+             $this->assertEquals(200, $client->getResponse()->getStatusCode());
         }
 
     }

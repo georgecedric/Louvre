@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}   Home{{"nom"}}{% endblock %} 
+{% block title %}   VALIDATION {% endblock %} 
     
    {% block content %}
 
@@ -9,13 +9,8 @@
 
     <!-- Caroussel================================================== -->
 <div class ="form container-fluid">
-    <div class="row  testation "> 
-
-        <h1> Billet d'entrée pour visiteur individuel </h1></br>
-        <p>Billet et réservation horaire incluant les collections permanentes, les expositions temporaires  et le musée Eugène-Delacroix.</p>
-        <p>Entrée à tarif reduit, sur présentation d’un justificatif pour les moins de 18 ans, les 18-25 ans résidents de l’Espace Economique Européen, les personnes handicapées et leur accompagnateur, et les bénéficiaires des minima sociaux. Liste complète sur Louvre.fr.
-        Billet valable seulement le jour sélectionné.</p>
-    </div> 
+    
+     
 
   
    
@@ -23,12 +18,17 @@
     <div class="row panierfinal ">   
 
 
-                 <h2>Montant total de votre panier</h2>
+                 <h2>Merci pour votre achat</h2>
 
             <div class="row col-sm-offset-2 billetVisitor ">
-                Bravo Votre achat est validé.
+                Bravo Votre achat est validé.</p>
+                Un mail de confirmation avec votre commande et vos tickets va vous être envoyer sur votre boite e-mail. Pensez à verifier votre boite spam
             </div>      
 
-            <h2>recapitulatif de votre commande</h2>
-
+            <div class=" col-sm-8 text-center firstage">
+        <a class=" btn btn btn-primary" href="{{path('home')}}">Retour à l'accueil <span class="glyphicon glyphicon glyphicon-hand-right"></span></a>
+       
+    </div>
+    </div>
+</div>
 {% endblock %}

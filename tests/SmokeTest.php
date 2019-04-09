@@ -20,9 +20,9 @@ class SmokeTest extends WebTestCase
             $statuCode,
             $response->getStatusCode(),
             sprintf(
-                'La page "%s" devrait être accessible, mais le code HTTP est "%s".',
-                $pageName,
-                $response->getStatusCode()
+            'La page "%s" devrait être accessible, mais le code HTTP est "%s".',
+            $pageName,
+            $response->getStatusCode()
             )
         );
     }
@@ -34,7 +34,9 @@ class SmokeTest extends WebTestCase
             'noticket' => ['noticket', '/noticket',200],
             'home' => ['home', '/',200],
             'firststage' => ['firststage', '/ticket/firststage',302],
- 
+            'secondstage' => ['secondstage', '/ticket/secondstage',302],
+            'payment' => ['payment', '/ticket/payment',302],
+            'validation' => ['validation', '/ticket/validation',200],
         ];
     }
 }

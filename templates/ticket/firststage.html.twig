@@ -49,7 +49,7 @@
         <div class ="panier col-sm-offset-1 col-sm-3">
             <h3> Mon Panier </h3>
             <h4> Jour de visite <h4>
-            <h5>{{ dateVisit | date('j. F Y') }}</h5>
+            <h5>{{ dateVisit | date('j. m. Y') }}</h5>
             <h4>Choix du type de billet</h4>
             <h5>{{ ticketType }}</h5>
         </div>
@@ -61,6 +61,7 @@
         <a class=" btn btn btn-primary" href="{{path('home')}}">Retour à l'accueil <span class="glyphicon glyphicon glyphicon-hand-right"></span></a>
         {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary '}}) }}
     </div>
+    
 
 
         {{ form_rest(form) }}

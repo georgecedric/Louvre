@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}   trop tard {% endblock %} 
+    
+   {% block content %}
+
+{# src/Louvre/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+    <!-- Caroussel================================================== -->
+<div class ="form container-fluid">
+    
+     
+
+  
+   
+
+    <div class="row panierfinal ">   
+
+                {% if toolate == "toolate" %} 
+                 <h2>Désolé, il est trop tard</h2>
+                 <div class="row col-sm-offset-2 billetVisitor ">
+                Désolé mais la vente de ticket pour le jour même, est seulement possible jusqu'à 17H sur le site internet</p>
+                Veuillez choisir une nouvelle date de visite.</div>  
+                  
+            
+
+            
+                {% elseif toolate == "troptard"  %}
+                <h2>Attention , il est trop tard pour des Billets à la journée</h2>
+                 <div class="row col-sm-offset-2 billetVisitor ">
+                Désolé mais la vente de ticket à la journée pour le jour même, est seulement possible jusqu'à 14H sur le site internet</p>
+                Veuillez choisir un billet à la demi journée ou une nouvelle date de visite.</div> 
+          
+                     
+                {% endif %} 
+                <div class=" col-sm-9 text-center firstage">
+                 <a class=" btn btn btn-primary" href="{{path('home')}}">Retour à l'accueil <span class="glyphicon glyphicon glyphicon-hand-right"></span></a>
+
+            
+    </div>
+</div>
+{% endblock %}

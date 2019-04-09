@@ -1,97 +1,5 @@
-<html lang="fr">
-  <head>
-    
 
-    <meta charset="utf-8"> 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Le Louvre - {% block title %}{% endblock %}</title>
-    <meta name="description" content="billeterie musée du Louvre">
-
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <link rel="stylesheet" href="{{ asset('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css')}}" type="text/css" media="all"/>  
-    <link href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css') }}" rel="stylesheet">      
-    <link href="{{ asset('/css/style.css') }}" rel="stylesheet"> 
-    
-    <script type="text/javascript" src='/js/style.js'></script>
-
-    
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    </head>
-    
-  <body> 
-
-       
-    <div class ="presentation">
-      
-      <!--entête de page-->
-          <div class ="row header">
-            <div class ="container row">
-                <div class="col-sm-4">
-                <a href="{{path('home')}}"><img src="{{ asset('/image/Louvrelogo.png') }}" alt="Logo" /></a>
-                
-                </div>
-                <div class ="col-sm-8 ">
-                   <h1>Billetterie officielle  </h1> 
-                   
-                </div>
-            </div>
-              
-            
-            <div class=" row pyramide">
-                <div class="col-sm-1">
-                    <img src="{{ asset('/image/pyramide.png') }}"  alt="Logo" />
-                </div>
-            </div>
-      
-          </div>
-     
-
-      <div class="content">{% block content %}{% endblock %}
-      </div>
-
-   
-        
-<!-- footer -->
-        <div class="hidden-xs row container-fluid footer">
-       
-            <div class=" row paiement">
-                <div class="col-sm-4"><p>PAIEMENT 100% SECURISÉ</p></div>
-                <div class="col-sm-2"><img src="{{ asset('/image/MasterCard.png') }}"  alt="mastercard" /></div>
-                <div class="col-sm-1"><img src="{{ asset('/image/Visa.png') }}"  alt="Visa" /></div>
-                <div class="col-sm-1"><img src="{{ asset('/image/Ecarte.png') }}"  alt="ecarte" /></div>
-                <div class="col-sm-1"><img src="{{ asset('/image/3DSECRURE.png') }}"  alt="3DSECURE" /></div>
-            </div>
-
-            <div class="row  mention"> 
-                <p>Tarifs . contactez nous .  <a class="CGV" href="https://www.ticketlouvre.fr/louvre/b2c/index.cfm/CGV">CGV</a>. Aide/FAQ</p>
-                <div class="row text-center"> 
-                    <p>© Musée du Louvre - Tous droits de reproduction réservés</p>
-                </div>
-            </div>
-        </div>    
-       
- </div>
-<!-- jQuery -->
-    
-    <!-- Javascript de Bootstrap -->
   
-  <script src="https://js.stripe.com/v3/"></script>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-      <!-- Javascript de Bootstrap -->
-  <script src="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')}}"></script> 
-  
-  <script>
   
       // Scrollspy fluide
       $(function () {
@@ -107,11 +15,7 @@
           
       });
         
-    </script>
-  
-  
-  
-  <script>
+   
 
   
 
@@ -178,8 +82,7 @@ $(document).ready(function() {
             while (dateBegin <= dateEnd)
             {
                 day     = dateBegin.getDay();
-           /*attention modification du jour*/     
-                if (day == 3 )
+                if (day == 2 )
                 {
                     selectedDates[dateBegin]        = {};
                     selectedDates[dateBegin][0]     = false;
@@ -372,11 +275,3 @@ function stripeTokenHandler(token) {
 }
 
 
-  
-  </script>
-
-    
-      
-  </body>
-
-</html>

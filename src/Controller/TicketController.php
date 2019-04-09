@@ -17,7 +17,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use  Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use App\Service\NumberCommande;
+use App\Service\PriceBillet;
+use App\Service\DateCommande;
 
 class TicketController extends AbstractController
 {
@@ -41,48 +43,37 @@ class TicketController extends AbstractController
         ]);
     }
 
-
-
+        /**
+     * @Route("/danger", name="danger")
+     */
+    public function danger(SessionInterface $session)
+    {
+        $toolate = $session->get('toolate');
+        
+        return $this->render('ticket/danger.html.twig', array(
+            'toolate'=> $toolate,
+          ));
+    }
     /**
      * @Route("/", name="home")
      */
-    public function home(Request $request, SessionInterface $session)
+    public function home(Request $request, SessionInterface $session, NumberCommande $numberCommande)
     {
-        
         $commande = new Commande();
-        
-        
-        function random($car) {
-            $string = "";
-            $chaine = "abcdefghijklmnpqrstuvwxy0123456789";
-            srand((double)microtime()*1000000);
-            for($i=0; $i<$car; $i++) {
-            $string .= $chaine [rand()%strlen($chaine  )];
-            }
-            return $string;
-            }
-            // APPEL
-            // Génère une chaine de longueur 20
-            $chaine = random(12);
-            $commande -> setNumberCommande( $chaine );
-    
+        $chaine = $numberCommande->getRandom(8);
+        $commande -> setNumberCommande( $chaine );
         $formCommande = $this->get('form.factory')->create(DateChoiceType::class, $commande);
         
-    // Si la requête est en POST
+    
     if ($request->isMethod('POST')) {
-    // On fait le lien Requête <-> Formulaire
-    // À partir de maintenant, la variable $advert contient les valeurs entrées dans le formulaire par le visiteur
-   
+
     $formCommande->handleRequest($request);
 
-        // On vérifie que les valeurs entrées sont correctes
         
         if ($formCommande->isValid()) {
             
             $session->set('newCommande', $commande);
             $dateVisit =$commande->getDateVisit();
-
-        // recherche du nombre de ticket deja vendu pour une date precise
 
             $repository = $this->getDoctrine()
                 ->getManager()
@@ -100,7 +91,7 @@ class TicketController extends AbstractController
                     }
 
                 $ticketRestant = 1000 - $nbTotalTicket;
-                $ticketRestant = 3;
+                $ticketRestant = 4;
                 
                     if ($ticketRestant == 0){
                         return $this->redirectToRoute('noticket');
@@ -125,12 +116,11 @@ class TicketController extends AbstractController
     /**
      * @Route("/ticket/firststage", name="firststage")
      */
-    public function firststage (Request $request, SessionInterface $session)
+    public function firststage (Request $request, SessionInterface $session,DateCommande $dateCommande)
     {
-       
-        $ticketRestant = $session->get('newTicketRestant');
         
-       
+
+        $ticketRestant = $session->get('newTicketRestant');
         $newCommande = $session->get('newCommande' );
 
         if ($newCommande==null){
@@ -138,27 +128,38 @@ class TicketController extends AbstractController
         }
         $commande = new Commande();
         $ticketType =$newCommande->getTicketType();
-        
         $dateVisit =$newCommande->getDateVisit();
         $commande->setTicketType($ticketType);
         $commande->setDateVisit($dateVisit);
+        $datetime1 = $commande->getDateVisit();
 
+        $toolate = $dateCommande->getBlocDate($datetime1, $ticketType);
+        
+
+        if ( isset($toolate)){
+            
+                
+                $session->set('toolate', $toolate);
+                
+                return $this->redirectToRoute('danger');   
+  
+        }
+       
+    
 
  
  
   
     $formCommande = $this->createForm(LouvreCommandeType::class, $newCommande);
-    // Si la requête est en POST
+   
         
     if ($request->isMethod('POST')) {
-        // On fait le lien Requête <-> Formulaire
-        // À partir de maintenant, la variable $advert contient les valeurs entrées dans le formulaire par le visiteur
+
         $formCommande->handleRequest($request);
     
-            // On vérifie que les valeurs entrées sont correctes
-           
+
             if ($formCommande->isValid()) {
-                // On enregistre notre objet $commande dans la base de données, par exemple
+
         
                 $session->set('newCommande', $newCommande);
                 $session->set('newTicketRestant', $ticketRestant);
@@ -177,10 +178,16 @@ class TicketController extends AbstractController
      /**
      * @Route("/ticket/secondstage", name="secondstage")
      */
-    public function secondstage (Request $request, SessionInterface $session)
+    public function secondstage (Request $request, SessionInterface $session,PriceBillet $priceBillet)
     {
-        $commande = $session->get('newCommande');
+    
         $ticketRestant = $session->get('newTicketRestant');
+        $commande = $session->get('newCommande' );
+
+        if ($commande==null){
+            return $this->redirectToRoute('home');
+        }
+
         $tickets = $commande->getTickets();
         $datetime1 = $commande->getDateVisit();
         $ticketType = $commande->getTicketType();
@@ -192,32 +199,24 @@ class TicketController extends AbstractController
                 $reduc= $ticket ->getReduction();
                 
                 // calcul de l'age
+                
                 $datetime2 = $ticket ->getBirth();
                 $age = $datetime1->diff($datetime2, true)->y;   
                 $ticket->setAge($age); 
+               
+                 
                 
                 // calcul du prix
                 
-                if ($reduc == true ) {  
-                    $price = 10;
-
-                }else {
-                    if($age < 4){
-                        $price = 0;
-                    } elseif($age >= 4 and $age < 12){
-                        $price = 8;
-                    }elseif($age >= 12 and $age < 60){
-                        $price = 16;
-                    }elseif($age >= 60 ){
-                        $price = 12;
-                    }
-                }
+                
+                
+                    $price = $priceBillet->getPriceTicket($age,$ticketType, $reduc);
+                
                 // calcul du prix si choix de demi-journée
-                if ($ticketType == 'demi-journee'){
-                    $price = $price/2;
-                }
+                
 
                 $ticket->setPrice($price);
+                
         // calcul du nombre de ticket       
          $cmpt++;
         $pricecommande = $pricecommande + $price;
@@ -249,7 +248,12 @@ class TicketController extends AbstractController
      */
     public function payment(Request $request, SessionInterface $session)
     {
-        $commande = $session->get('newCommande');       
+ 
+        $commande = $session->get('newCommande' );
+
+        if ($commande==null){
+            return $this->redirectToRoute('home');
+        }     
         return $this->render('ticket/payment.html.twig', array(
             'commande' => $commande,
             
@@ -268,6 +272,9 @@ class TicketController extends AbstractController
     public function checkoutAction(Request $request, SessionInterface $session, \Swift_Mailer $mailer)
     {
         $commande = $session->get('newCommande');
+        if ($commande==null){
+            return $this->redirectToRoute('home');
+        } 
 
         $price = $commande->getPrice();
         $email = $commande->getEmail();
@@ -293,7 +300,8 @@ class TicketController extends AbstractController
 
             $message = (new \Swift_Message('votre facture'))
             ->setFrom(array ('contact@lartdchoix.com'=>'billetterie le louvre'))
-            ->setTo($email)
+            ->setTo($email)	
+            ->setContentType("text/html")
             ->setBody(
                 $this->renderView(
                     // templates/emails/registration.html.twig
