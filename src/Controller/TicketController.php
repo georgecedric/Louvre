@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request; 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
-use  Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Service\NumberCommande;
 use App\Service\PriceBillet;
@@ -91,8 +91,7 @@ class TicketController extends AbstractController
                     }
 
                 $ticketRestant = 1000 - $nbTotalTicket;
-                $ticketRestant = 4;
-                
+                $ticketRestant = 1;
                     if ($ticketRestant == 0){
                         return $this->redirectToRoute('noticket');
                     }
@@ -203,13 +202,8 @@ class TicketController extends AbstractController
                 $datetime2 = $ticket ->getBirth();
                 $age = $datetime1->diff($datetime2, true)->y;   
                 $ticket->setAge($age); 
-               
-                 
-                
+
                 // calcul du prix
-                
-                
-                
                     $price = $priceBillet->getPriceTicket($age,$ticketType, $reduc);
                 
                 // calcul du prix si choix de demi-journée
