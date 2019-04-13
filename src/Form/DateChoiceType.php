@@ -37,7 +37,7 @@ class DateChoiceType extends AbstractType
         ->add('ticketType', ChoiceType::class, [
             'label' => "choissisez votre billet",
                 'choices'  => [
-                'Journée ( Entrée à partir de 18H)' => 'journée',
+                'Journée ( Entrée à partir de 9H)' => 'journée',
                 'Demi-journée ( Entrée à partir de 14H)' => 'demi-journee',
                 
                         ],

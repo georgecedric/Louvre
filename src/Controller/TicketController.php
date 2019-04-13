@@ -91,7 +91,7 @@ class TicketController extends AbstractController
                     }
 
                 $ticketRestant = 1000 - $nbTotalTicket;
-                $ticketRestant = 1;
+               
                     if ($ticketRestant == 0){
                         return $this->redirectToRoute('noticket');
                     }
@@ -206,9 +206,6 @@ class TicketController extends AbstractController
                 // calcul du prix
                     $price = $priceBillet->getPriceTicket($age,$ticketType, $reduc);
                 
-                // calcul du prix si choix de demi-journée
-                
-
                 $ticket->setPrice($price);
                 
         // calcul du nombre de ticket       
@@ -296,6 +293,7 @@ class TicketController extends AbstractController
             ->setFrom(array ('contact@lartdchoix.com'=>'billetterie le louvre'))
             ->setTo($email)	
             ->setContentType("text/html")
+
             ->setBody(
                 $this->renderView(
                     // templates/emails/registration.html.twig
