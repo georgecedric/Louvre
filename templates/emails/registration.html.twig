@@ -36,35 +36,33 @@
      
      
     <div   style="background-color:grey; padding:10px");> 
-   <div class="row col-sm-offset-1 panierfinal"  );>   
+        <div class="row col-sm-offset-1 panierfinal"  );>   
 
             <div class="row col-sm-offset-1 billetVisitor "style="background-color:white; margin:10px; padding:10px ">
                 <div class="col-sm-2">
                     <img src="{{ img }}" width="50" border="0" alt="logo_du_louvre" style="padding-top:20px">
                 </div> 
                 <div class="col-sm-10">
-                 <p> <h2>  facture numero : {{ commande.numberCommande }}</h2></p>
-                <p>Nombre de billet : {{ commande.numberTicket }}</p>
-                <p>Montant de votre panier : {{ commande.price }} euros</p>  
+                    <p> <h2>  facture numero : {{ commande.numberCommande }}</h2></p>
+                    <p>Nombre de billet : {{ commande.numberTicket }}</p>
+                    <p>Montant de votre panier : {{ commande.price }} euros</p>  
                 </div>    
             </div>      
  
 
-    </div> 
+        </div> 
 
     <div class="row col-sm-offset-1 panierfinal ">      
-            <h1 style="background-color:red; padding:10px">Récapitulatif de votre panier</h1> 
+        <h1 style="background-color:red; padding:10px">Récapitulatif de votre panier</h1> 
             <div class="row col-sm-offset-1 billetVisitor "style="background-color:white; margin:10px; padding:10px ">
                 <p>Date de votre visite : {{ commande.dateVisit | date('j.m.Y') }}</p> 
                 <p>Type de billet : {{ commande.ticketType }}</p>
             </div>
 
+        <h2 style="background-color:red; padding:10px">Description de vos billets</h2>
 
-            <h2 style="background-color:red; padding:10px">Description de vos billets</h2>
-        
-               
-                    {% set id = 1 %}    
-                    {% for ticket in tickets %}
+        {% set id = 1 %}    
+        {% for ticket in tickets %}
                     <div class="row col-sm-offset-1 billetVisitor" style="background-color:white; margin:10px; padding:10px ">
                      <ul>
                         <li>
@@ -90,7 +88,7 @@
                             <h1>prix du billet : </h1>
                             <h1> {{ ticket.price }} €</h1>
                         </div></br>
-                        <div class="row col-sm-12"> 
+                        <div class="row col-sm-12" style="color:red"> 
                             {% if ticket.reduction == true %}
                                     <p> <redtext>Billet à tarif réduit, une pièce d'identité vous sera demandé à l'entrée du musée pour justifier votre reduction.</redtext></p>
                              {% endif %} 
