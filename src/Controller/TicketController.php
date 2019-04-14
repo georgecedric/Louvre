@@ -292,12 +292,17 @@ class TicketController extends AbstractController
             $message = (new \Swift_Message('votre facture'))
             ->setFrom(array ('contact@lartdchoix.com'=>'billetterie le louvre'))
             ->setTo($email)	
-            ->setContentType("text/html")
+            ->setContentType("text/html");
 
-            ->setBody(
+            /*1*/
+    $img = $message->embed(\Swift_Image::fromPath('image/Louvrelogo.png'));
+    $img2 = $message->embed(\Swift_Image::fromPath('image/joconde.jpeg'));
+    
+    /*2*/
+        $message->setBody(
                 $this->renderView(
                     // templates/emails/registration.html.twig
-                    'emails/registration.html.twig', array('commande' => $session->get('newCommande'),  'tickets' => $commande->getTickets())
+                    'emails/registration.html.twig', array('commande' => $session->get('newCommande'),  'tickets' => $commande->getTickets(),'img' => $img,'img2' => $img2)
                 ),
                 'text/html'
             );
@@ -325,5 +330,7 @@ class TicketController extends AbstractController
             'controller_name' => 'TicketController',
         ]);
     }
+
+    
 
 }

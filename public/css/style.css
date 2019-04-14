@@ -113,6 +113,10 @@ h1
 .paiement img {
     width: 150%;
 }
+.mastercard {
+    width: 7%;
+}
+
 .mention{
    padding:5px;
     padding-top: 10px;
