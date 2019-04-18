@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "891332776e970d754d58644d753c6d86",
+    "content-hash": "b68ce8fc169e1e21a0cb45b6cec0ba26",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -5674,56 +5674,6 @@
             "time": "2018-05-16T17:37:13+00:00"
         },
         {
-            "name": "fzaninotto/faker",
-            "version": "v1.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "f72816b43e74063c8b10357394b6bba8cb1c10de"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/f72816b43e74063c8b10357394b6bba8cb1c10de",
-                "reference": "f72816b43e74063c8b10357394b6bba8cb1c10de",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.3 || ^7.0"
-            },
-            "require-dev": {
-                "ext-intl": "*",
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "squizlabs/php_codesniffer": "^1.5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.8-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Faker\\": "src/Faker/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Zaninotto"
-                }
-            ],
-            "description": "Faker is a PHP library that generates fake data for you.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "time": "2018-07-12T10:23:15+00:00"
-        },
-        {
             "name": "nikic/php-parser",
             "version": "v4.2.1",
             "source": {
@@ -6039,16 +5989,16 @@
         },
         {
             "name": "symfony/maker-bundle",
-            "version": "v1.11.5",
+            "version": "v1.11.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/maker-bundle.git",
-                "reference": "186ffc80b8f363e04ea3c2ebf49e1263a84b4e39"
+                "reference": "540996bfdcc14ca38dfe4865c020d965020ae821"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/186ffc80b8f363e04ea3c2ebf49e1263a84b4e39",
-                "reference": "186ffc80b8f363e04ea3c2ebf49e1263a84b4e39",
+                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/540996bfdcc14ca38dfe4865c020d965020ae821",
+                "reference": "540996bfdcc14ca38dfe4865c020d965020ae821",
                 "shasum": ""
             },
             "require": {
@@ -6101,7 +6051,7 @@
                 "scaffold",
                 "scaffolding"
             ],
-            "time": "2019-03-11T15:55:09+00:00"
+            "time": "2019-03-01T20:45:16+00:00"
         },
         {
             "name": "symfony/panther",
