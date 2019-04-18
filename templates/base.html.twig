@@ -82,7 +82,7 @@
 <!-- jQuery -->
     
     <!-- Javascript de Bootstrap -->
-   <script src="js/style.js"></script>
+  
   <script src="https://js.stripe.com/v3/"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -159,6 +159,10 @@ $(document).ready(function() {
 	return datepicker.regional['fr'];
 
 }))
+
+
+
+
 
  /*    
     *    Get tuesday in a month
@@ -380,7 +384,7 @@ function stripeTokenHandler(token) {
  <script>
  var disabledDates = ["2019-05-01","2019-07-14","2020-05-01"];
 
-$( '.js-datepicker' ).datepicker({
+$('.js-datepicker').datepicker({
 
     beforeShowDay: function(date){
 
