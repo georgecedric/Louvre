@@ -60,13 +60,8 @@ class TicketController extends AbstractController
     public function home(Request $request, SessionInterface $session, NumberCommande $numberCommande)
     {
         $commande = new Commande();
-<<<<<<< HEAD
         $chaine = $numberCommande->getRandom(8);
         $commande -> setNumberCommande( $chaine );
-=======
-        
-    
->>>>>>> parent of e18a8fe... envoie email
         $formCommande = $this->get('form.factory')->create(DateChoiceType::class, $commande);
         
     
@@ -76,7 +71,6 @@ class TicketController extends AbstractController
 
         
         if ($formCommande->isValid()) {
-<<<<<<< HEAD
             
             $session->set('newCommande', $commande);
             $dateVisit =$commande->getDateVisit();
@@ -108,9 +102,6 @@ class TicketController extends AbstractController
                     }
                     
             $session->set('newTicketRestant', $ticketRestant);    
-=======
-            $session->set('newCommande', $commande);
->>>>>>> parent of e18a8fe... envoie email
             return $this->redirectToRoute('firststage');
         }
     } 
@@ -137,11 +128,7 @@ class TicketController extends AbstractController
         $commande = new Commande();
         $ticketType =$newCommande->getTicketType();
         $dateVisit =$newCommande->getDateVisit();
-<<<<<<< HEAD
-=======
-     
-        
->>>>>>> parent of e18a8fe... envoie email
+
         $commande->setTicketType($ticketType);
         $commande->setDateVisit($dateVisit);
         $datetime1 = $commande->getDateVisit();
@@ -264,8 +251,7 @@ class TicketController extends AbstractController
             
         ));
     }
-
-    
+ 
 
 /**
      * @Route(
@@ -274,16 +260,13 @@ class TicketController extends AbstractController
      *     methods="POST"
      * )
      */
-    public function checkoutAction(Request $request, SessionInterface $session)
+    public function checkoutAction(Request $request, SessionInterface $session, \Swift_Mailer $mailer)
     {
         $commande = $session->get('newCommande');
-<<<<<<< HEAD
         if ($commande==null){
             return $this->redirectToRoute('home');
         } 
 
-=======
->>>>>>> parent of e18a8fe... envoie email
         $price = $commande->getPrice();
         $email = $commande->getEmail();
 
@@ -302,9 +285,7 @@ class TicketController extends AbstractController
             ));
             $em = $this->getDoctrine()->getManager();
             $em->persist($commande);
-            return $this->redirectToRoute('payment');
             $em->flush();
-<<<<<<< HEAD
 
             //envoyer email ici
 
@@ -332,8 +313,6 @@ class TicketController extends AbstractController
 
             return $this->redirectToRoute('validation');
             
-=======
->>>>>>> parent of e18a8fe... envoie email
         } catch(\Stripe\Error\Card $e) {
 
             $this->addFlash("error","Snif ça marche pas :(");
@@ -342,7 +321,6 @@ class TicketController extends AbstractController
         }
     }
 
-<<<<<<< HEAD
     /**
      * @Route("/ticket/validation", name="validation")
      */
@@ -355,6 +333,4 @@ class TicketController extends AbstractController
 
     
 
-=======
->>>>>>> parent of e18a8fe... envoie email
 }

@@ -16,7 +16,7 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet"> 
 
     
-    <script type="text/javascript" src='js/style.js'></script>
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -82,7 +82,7 @@
 <!-- jQuery -->
     
     <!-- Javascript de Bootstrap -->
-  
+   <script type="text/javascript" src='js/style.js'></script>
   <script src="https://js.stripe.com/v3/"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -149,7 +149,7 @@ $(document).ready(function() {
 		dayNamesShort: ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'],
 		dayNamesMin: ['D','L','M','M','J','V','S'],
 		weekHeader: 'Sem.',
-		dateFormat: 'dd/mm/yy',
+		dateFormat: 'dd-mm-yy',
 		firstDay: 1,
 		isRTL: false,
 		showMonthAfterYear: false,
@@ -159,10 +159,6 @@ $(document).ready(function() {
 	return datepicker.regional['fr'];
 
 }))
-
-
-
-
 
  /*    
     *    Get tuesday in a month
@@ -384,7 +380,7 @@ function stripeTokenHandler(token) {
  <script>
  var disabledDates = ["2019-05-01","2019-07-14","2020-05-01"];
 
-$('.js-datepicker').datepicker({
+$( '.js-datepicker' ).datepicker({
 
     beforeShowDay: function(date){
 
