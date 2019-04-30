@@ -6,8 +6,9 @@ namespace App\Service;
 class PriceBillet
 {
     function getPriceTicket( $age, $ticketType, $reduc) {
-            if($reduc==true){
+            if($reduc==true and $age > 12){
                 $price = 10;
+                    
             }else{
                 if($age < 4){
                     $price = 0;

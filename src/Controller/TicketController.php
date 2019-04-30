@@ -91,7 +91,7 @@ class TicketController extends AbstractController
                     }
 
                 $ticketRestant = 1000 - $nbTotalTicket;
-               
+                
                     if ($ticketRestant == 0){
                         return $this->redirectToRoute('noticket');
                     }
@@ -206,6 +206,11 @@ class TicketController extends AbstractController
 
                 // calcul du prix
                     $price = $priceBillet->getPriceTicket($age,$ticketType, $reduc);
+                    if ($price == 0 or $price == 8){
+                        $reduc = false;
+                        $ticket->setReduction($reduc);
+
+                    }
                 
                 $ticket->setPrice($price);
                 

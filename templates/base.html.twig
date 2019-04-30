@@ -158,7 +158,7 @@ $(document).ready(function() {
 
 	return datepicker.regional['fr'];
 
-}))
+})) 
 
  /*    
     *    Get tuesday in a month
@@ -191,7 +191,7 @@ $(document).ready(function() {
 
 
  var selectedDates = {};
- 
+ var disabledDates = ["2019-05-01","2019-11-01","2019-12-25","2020-05-01","2020-07-14","2020-12-25","2021-05-01","2021-07-14","2021-12-25"];
  
     $( '.js-datepicker' ).datepicker({minDate: 0,
         onChangeMonthYear: function(year, month)
@@ -211,12 +211,20 @@ $(document).ready(function() {
                 return [highlight[0], highlight[1], highlight[2]];
               }
               else {
-                 return [true, '', ''];
+                 return [ disabledDates.indexOf(string) == -1 ];
               }
+              
            }
            
     
     });
+
+
+
+
+
+
+    
 
 
 
@@ -374,24 +382,12 @@ function stripeTokenHandler(token) {
   // Submit the form
   form.submit();
 }
+;
 
   </script>
  
- <script>
- var disabledDates = ["2019-05-01","2019-07-14","2020-05-01"];
-
-$( '.js-datepicker' ).datepicker({
-
-    beforeShowDay: function(date){
-
-        var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-
-        return [ disabledDates.indexOf(string) == -1 ];
-
-    }
-
-});
-</script>
+ 
+ 
 
     
       
