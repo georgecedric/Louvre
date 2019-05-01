@@ -206,7 +206,7 @@ class TicketController extends AbstractController
 
                 // calcul du prix
                     $price = $priceBillet->getPriceTicket($age,$ticketType, $reduc);
-                    if ($price == 0 or $price == 8){
+                    if ($price == 0 or $price == 8 or $price == 4){
                         $reduc = false;
                         $ticket->setReduction($reduc);
 
